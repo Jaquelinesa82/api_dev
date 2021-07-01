@@ -1,32 +1,49 @@
-from models import Pessoas
+from models import Pessoas, Usuarios
 
 
+# Insere dados na tabela pessoa
 def insere_pessoas():
-    pessoa = Pessoas(nome='bia', idade=18)
+    pessoa = Pessoas(nome='Galleani',idade=25)
     print(pessoa)
     pessoa.save()
 
-# Insere dados na tabela pessoa
+
+# Realiza consulta na tabela pessoa
 def consulta_pessoas():
-    pessoa = Pessoas.query.all()
-    pessoa = Pessoas.query.filter_by(nome='jaque').first()
-    print(pessoa.nome)
+    pessoas = Pessoas.query.all()
+    print(pessoas)
+    pessoa = Pessoas.query.filter_by(nome='Rafael').first()
+    print(pessoa.idade)
+
 
 # Altera dados na tabela pessoa
 def altera_pessoa():
-    pessoa = Pessoas.query.filter_by(nome='Ana').first()
-    pessoa.nome = 'Rafael'
+    pessoa = Pessoas.query.filter_by(nome='Galleani').first()
+    pessoa.nome = 'Felipe'
     pessoa.save()
 
-# Deleta dados na tabela pessoa
-def delete_pessoa():
-    pessoa = Pessoas.query.filter_by(nome='Ana').first()
+
+# Exclui dados na tabela pessoa
+def exclui_pessoa():
+    pessoa = Pessoas.query.filter_by(nome='Felipe').first()
     pessoa.delete()
 
 
+def insere_usuario(login, senha):
+    usuario = Usuarios(login=login, senha=senha)
+    usuario.save()
+
+
+def consulta_todos_usuarios():
+    usuarios = Usuarios.query.all()
+    print(usuarios)
+
 
 if __name__ == '__main__':
+    insere_usuario('rafael', '1234')
+    insere_usuario('galleani', '4321')
+    consulta_todos_usuarios()
     #insere_pessoas()
-    consulta_pessoas()
     #altera_pessoa()
-    #delete_pessoa()
+    #exclui_pessoa()
+    #consulta_pessoas()
